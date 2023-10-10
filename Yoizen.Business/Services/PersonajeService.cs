@@ -7,9 +7,9 @@ namespace Yoizen.Business.Services
 {
     public class PersonajeService
     {
-        private readonly Repository<Personaje, Guid> personajeRepo;   
+        private readonly Repository<Personaje, string> personajeRepo;   
 
-        public PersonajeService(Repository<Personaje,Guid> personajeRepository)
+        public PersonajeService(Repository<Personaje,string> personajeRepository)
         {
             this.personajeRepo = personajeRepository;     
         }

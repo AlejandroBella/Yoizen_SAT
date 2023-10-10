@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.ImplementDataInjection();
-builder.Services.AddScoped<Repository<Personaje, Guid>, PersonajeRepository>();
+builder.Services.AddScoped<Repository<Personaje, string>, PersonajeRepository>();
 builder.Services.AddScoped<PersonajeService>();
 
 

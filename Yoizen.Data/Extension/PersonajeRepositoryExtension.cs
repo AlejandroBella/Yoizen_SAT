@@ -10,7 +10,7 @@ namespace Yoizen.Data.Extension
 {
     public static class PersonajeRepositoryExtension
     {
-        public static List<Personaje> GetByName(this Repository<Personaje, Guid> repository, string name)
+        public static List<Personaje> GetByName(this Repository<Personaje, string> repository, string name)
         {
             return repository.GetAll().Where(x => x.Nombre.ToLower().Contains(name.ToLower())).ToList();
         }

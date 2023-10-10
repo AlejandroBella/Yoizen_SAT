@@ -3,7 +3,7 @@ using Yoizen.Data.Interfaces;
 
 namespace Yoizen.Data
 {
-    public class PersonajeRepository : Repository<Personaje, Guid>
+    public class PersonajeRepository : Repository<Personaje, string>
     {
         public PersonajeRepository(DataStore data) : base(data)
         {
@@ -19,9 +19,9 @@ namespace Yoizen.Data
             throw new NotImplementedException();
         }
 
-        public override Personaje Get(Guid id)
+        public override Personaje Get(string id)
         {
-            return data.Personajes.FirstOrDefault(x => x.Id == id);
+            return data.Personajes.FirstOrDefault(x => x._Id == id);
         }
 
         public override IEnumerable<Personaje> GetAll()

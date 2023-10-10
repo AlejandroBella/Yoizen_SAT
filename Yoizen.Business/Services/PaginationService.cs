@@ -30,20 +30,20 @@ namespace Yoizen.Business.Services
             {
                 double total = result.TotalDocs / result.Limit;
                 result.TotalPages = (int)Math.Ceiling(total);
-                if (pageParams.PageIndex <= result.TotalPages)
-                {
-                    result.Page = pageParams.PageIndex;
-                    result.Docs = docs.Skip((result.Page - 1) * result.Limit).Take(result.Limit).ToList();
-                }
-                else
+                if (pageParams.PageIndex > result.TotalPages)
                 {
                     throw new KeyNotFoundException("Page not found");
                 }
+
+                result.Page = pageParams.PageIndex;
+                var contador = (result.Page - 1) * result.Limit;
+                result.Docs = docs.Skip(contador).Take(result.Limit).ToList();
+
                 result.HasPrevPage = pageParams.PageIndex > 1;
                 result.HasNextPage = pageParams.PageIndex < result.TotalPages;
                 result.NextPage = result.HasNextPage ? result.Page++ : result.Page;
                 result.PrevPage = result.HasPrevPage ? result.Page-- : result.Page;
-                result.PagingCounter = result.Page == 1? 1:result.Page + result.Limit;
+                result.PagingCounter = contador+1;
             }
 
             return result;
